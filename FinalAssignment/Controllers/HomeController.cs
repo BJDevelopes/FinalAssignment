@@ -26,5 +26,26 @@ namespace FinalAssignment.Controllers
 
             return View();
         }
+
+        public ActionResult Products()
+        {
+            ViewBag.Message = "View all products page.";
+
+            return View();
+        }
+
+        public ActionResult Login()
+        {
+            ViewBag.Message = "Login page.";
+
+            return View();
+        }
+
+        public ActionResult Register()
+        {
+            ViewBag.Message = "Register Page.";
+
+            return View();
+        }
     }
 }
