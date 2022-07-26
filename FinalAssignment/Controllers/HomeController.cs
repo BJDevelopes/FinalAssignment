@@ -30,16 +30,9 @@ namespace FinalAssignment.Controllers
         public ActionResult Products()
         {
             ViewBag.Message = "View all products page.";
-
             return View();
         }
 
-        public ActionResult Login()
-        {
-            ViewBag.Message = "Login page.";
-
-            return View();
-        }
 
         public ActionResult Register()
         {

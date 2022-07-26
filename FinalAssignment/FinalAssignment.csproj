@@ -125,6 +125,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="DbContent\CMSdbcontent.cs" />
     <Compile Include="Global.asax.cs">
@@ -179,7 +180,14 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\Products.cshtml" />
-    <Content Include="Views\Home\Login.cshtml" />
+    <Content Include="Views\Home\Register.cshtml" />
+    <Content Include="Views\Home\Admin\Index.cshtml" />
+    <Content Include="Views\Shared\_AdminLayout.cshtml" />
+    <Content Include="Views\Home\Admin\Users.cshtml" />
+    <Content Include="Views\Home\Admin\AProducts.cshtml" />
+    <Content Include="Views\Home\Admin\NProducts.cshtml" />
+    <Content Include="Views\Home\Admin\SiteConfig.cshtml" />
+    <Content Include="Views\Home\Admin\NUsers.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />

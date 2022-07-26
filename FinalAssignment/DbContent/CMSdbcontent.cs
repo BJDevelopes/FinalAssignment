@@ -9,8 +9,8 @@ namespace FinalAssignment.DbContent
 {
     public class CMSdbcontent : System.Data.Entity.DbContext
     {
-        DbSet<Users> Users { get; set; }
+        public virtual DbSet<Users> Users { get; set; }
 
-        DbSet<Products> Products { get; set; }
+        public virtual DbSet<Products> Products { get; set; }
     }
 }
