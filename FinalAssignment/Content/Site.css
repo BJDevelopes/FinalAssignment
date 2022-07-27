@@ -117,3 +117,15 @@ footer {
         color: #fff;
         background-color: #59b5fa;
     }
+
+.admin-butt {
+    display: inline-block;
+    line-height: 0.7em;
+    position: relative;
+    border: 2px solid gold;
+    border-radius: 25px;
+    border-bottom: 1px solid #245fc1;
+    padding-bottom: 0px;
+    border-top: 1px solid #245fc1;
+    padding-top: 0px;
+}
