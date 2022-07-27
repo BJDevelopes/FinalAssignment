@@ -40,5 +40,33 @@ namespace FinalAssignment.Controllers
 
             return View();
         }
+
+        public ActionResult Admin()
+        {
+            ViewBag.Message = "Administrator Panel.";
+
+            return View("~/Views/Home/Admin/Index.cshtml");
+        }
+
+        public ActionResult AProducts()
+        {
+            ViewBag.Message = "Products Administrator Panel.";
+
+            return View("~/Views/Home/Admin/AProducts.cshtml");
+        }
+
+        public ActionResult Users()
+        {
+            ViewBag.Message = "Users Administrator Panel.";
+
+            return View("~/Views/Home/Admin/Users.cshtml");
+        }
+
+        public ActionResult SiteConfig()
+        {
+            ViewBag.Message = "Site Configuration Administrator Panel.";
+
+            return View("~/Views/Home/Admin/SiteConfig.cshtml");
+        }
     }
 }

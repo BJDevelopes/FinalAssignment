@@ -125,7 +125,6 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="DbContent\CMSdbcontent.cs" />
     <Compile Include="Global.asax.cs">
@@ -141,13 +140,19 @@
       <DependentUpon>CMSdb.mdf</DependentUpon>
     </Content>
     <Content Include="Content\aboutusbanner.png" />
+    <Content Include="Content\adminpanelindex.png" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\contactusbanner.png" />
     <Content Include="Content\containerbackground.png" />
+    <Content Include="Content\createproductsbanner.png" />
+    <Content Include="Content\createuserbanner.png" />
+    <Content Include="Content\manageproductsbanner.png" />
+    <Content Include="Content\manageusersbanner.png" />
     <Content Include="Content\productsbanner.png" />
+    <Content Include="Content\siteconfigbanner.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
