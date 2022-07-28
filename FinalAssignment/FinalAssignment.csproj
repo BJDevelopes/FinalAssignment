@@ -126,6 +126,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="DbContent\CMSdbcontent.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -136,9 +137,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\CMSdb.mdf" />
-    <Content Include="App_Data\CMSdb_log.ldf">
-      <DependentUpon>CMSdb.mdf</DependentUpon>
-    </Content>
     <Content Include="Content\aboutusbanner.png" />
     <Content Include="Content\adminpanelindex.png" />
     <Content Include="Content\bootstrap-theme.css" />
@@ -193,6 +191,11 @@
     <Content Include="Views\Home\Admin\NProducts.cshtml" />
     <Content Include="Views\Home\Admin\SiteConfig.cshtml" />
     <Content Include="Views\Home\Admin\NUsers.cshtml" />
+    <Content Include="Views\Users\Index.cshtml" />
+    <Content Include="Views\Users\Details.cshtml" />
+    <Content Include="Views\Users\Delete.cshtml" />
+    <Content Include="Views\Users\Edit.cshtml" />
+    <Content Include="Views\Users\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
