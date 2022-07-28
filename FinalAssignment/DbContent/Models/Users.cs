@@ -7,11 +7,11 @@ using System.Web.DynamicData;
 
 namespace FinalAssignment.Models
 {
-    [TableName("Users")]
+    [Table("Users")]
     public class Users
     {
-        public int id { get; set; } 
-        public Boolean isadmin { get; set; }
+        public int Id { get; set; } 
+        public string isadmin { get; set; }
         public string username { get; set; }
         public string password { get; set; }
         public string firstname { get; set; }
