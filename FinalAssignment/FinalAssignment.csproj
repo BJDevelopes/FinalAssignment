@@ -137,9 +137,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\CMSdb.mdf" />
-    <Content Include="App_Data\CMSdb_log.ldf">
-      <DependentUpon>CMSdb.mdf</DependentUpon>
-    </Content>
     <Content Include="Content\aboutusbanner.png" />
     <Content Include="Content\adminpanelindex.png" />
     <Content Include="Content\bootstrap-theme.css" />
