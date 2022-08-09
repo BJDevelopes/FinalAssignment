@@ -10,6 +10,7 @@ namespace FinalAssignment.Controllers
 {
     public class RegisterController : Controller
     {
+        [HttpGet]
         public ActionResult Create()
         {
             return View();
@@ -22,7 +23,7 @@ namespace FinalAssignment.Controllers
             cmscontent.Users.Add(user);
             cmscontent.SaveChanges();
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Create", "Login");
         }
     }
 }
