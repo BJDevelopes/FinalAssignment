@@ -209,6 +209,8 @@
     <Content Include="Views\Products\Details.cshtml" />
     <Content Include="Views\Login\Create.cshtml" />
     <Content Include="Views\Register\Create.cshtml" />
+    <Content Include="Views\Shared\_NoNav.cshtml" />
+    <Content Include="Views\Shared\_Layout2.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />

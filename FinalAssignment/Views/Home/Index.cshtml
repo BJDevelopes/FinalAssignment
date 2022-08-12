@@ -1,5 +1,27 @@
-﻿@{
+﻿@using FinalAssignment.Models;
+@{
     ViewBag.Title = "Home Page";
+    var clayout = "";
+    var admin = Session["admin"];
+
+    //Try Catch is implmented to catch null values // this happens when user first registers, becuase value is left empty.
+  try { 
+        //Uses session to pass isadmin from database to var to pick what layout to render.
+    if (admin.Equals("true"))
+    {
+        clayout = "~/Views/Shared/_Layout.cshtml";
+    }
+    else
+    {
+        clayout = "~/Views/Shared/_Layout2.cshtml";
+    }
+    Layout = clayout;
+  }catch(NullReferenceException ex)
+    {
+        clayout = "~/Views/Shared/_Layout2.cshtml";
+        Layout = clayout;
+    }
+
 }
 
 <div class="jumbotron">
@@ -12,7 +34,7 @@
     <div class="col-md-4" style="background-color: white; border-radius: 25px; right: 4px;">
         <h2>Powerful Product Display System</h2>
         <p>
-            The greatest possible customer experience is created by our content management system, 
+            The greatest possible customer experience is created by our content management system,
             which provides you with a robust product display page that enables customers to effortlessly browse the whole store's inventory,
             make purchases, and check reviews with a simple user interface..
         </p>
@@ -28,4 +50,5 @@
         <p>A simple yet effective user registration page. enabling all of your customers to register in order to manage their orders and leave product reviews.</p>
         <p><a class="btn btn-grad" href="../home/register">View Register Page &raquo;</a></p>
     </div>
+
 </div>
