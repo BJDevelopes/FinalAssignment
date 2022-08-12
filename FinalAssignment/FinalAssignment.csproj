@@ -131,6 +131,7 @@
     <Compile Include="Controllers\RegisterController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="DbContent\CMSdbcontent.cs" />
+    <Compile Include="DbContent\Models\Orders.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
