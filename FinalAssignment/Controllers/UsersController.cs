@@ -38,11 +38,15 @@ namespace FinalAssignment.Controllers
         [HttpPost]
         public ActionResult Create(Users user)
         {
-            CMSdbcontent cmscontent = new CMSdbcontent();
-            cmscontent.Users.Add(user);
-            cmscontent.SaveChanges();
+            if (ModelState.IsValid)
+            {
+                CMSdbcontent cmscontent = new CMSdbcontent();
+                cmscontent.Users.Add(user);
+                cmscontent.SaveChanges();
 
-            return RedirectToAction("Index");
+                return RedirectToAction("Index");
+            }
+            return View();
         }
         public ActionResult Details(int id)
         {
