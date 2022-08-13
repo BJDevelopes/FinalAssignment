@@ -152,6 +152,7 @@
     <Content Include="Content\containerbackground.png" />
     <Content Include="Content\createproductsbanner.png" />
     <Content Include="Content\createuserbanner.png" />
+    <Content Include="Content\manageordersbanner.png" />
     <Content Include="Content\manageproductsbanner.png" />
     <Content Include="Content\manageusersbanner.png" />
     <Content Include="Content\productsbanner.png" />
@@ -191,11 +192,7 @@
     <Content Include="Views\Home\Register.cshtml" />
     <Content Include="Views\Home\Admin\Index.cshtml" />
     <Content Include="Views\Shared\_AdminLayout.cshtml" />
-    <Content Include="Views\Home\Admin\Users.cshtml" />
-    <Content Include="Views\Home\Admin\AProducts.cshtml" />
-    <Content Include="Views\Home\Admin\NProducts.cshtml" />
     <Content Include="Views\Home\Admin\SiteConfig.cshtml" />
-    <Content Include="Views\Home\Admin\NUsers.cshtml" />
     <Content Include="Views\Users\Index.cshtml" />
     <Content Include="Views\Users\Details.cshtml" />
     <Content Include="Views\Users\Delete.cshtml" />
