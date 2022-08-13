@@ -4,22 +4,29 @@
     var clayout = "";
     var admin = Session["admin"];
 
-    //Try Catch is implmented to catch null values // this happens when user first registers, becuase value is left empty.
-  try { 
-        //Uses session to pass isadmin from database to var to pick what layout to render.
-    if (admin.Equals("true"))
+    if (Request.Cookies["saveLogin"] != null)
     {
-        clayout = "~/Views/Shared/_Layout.cshtml";
+        //Try Catch is implmented to catch null values // this happens when user first registers, becuase value is left empty.
+        try {
+            //Uses session to pass isadmin from database to var to pick what layout to render.
+            if (admin.Equals("true"))
+            {
+                clayout = "~/Views/Shared/_Layout.cshtml";
+            }
+            else
+            {
+                clayout = "~/Views/Shared/_Layout2.cshtml";
+            }
+            Layout = clayout;
+        }catch(NullReferenceException ex)
+        {
+            clayout = "~/Views/Shared/_Layout2.cshtml";
+            Layout = clayout;
+        }
     }
     else
     {
-        clayout = "~/Views/Shared/_Layout2.cshtml";
-    }
-    Layout = clayout;
-  }catch(NullReferenceException ex)
-    {
-        clayout = "~/Views/Shared/_Layout2.cshtml";
-        Layout = clayout;
+        Response.Redirect("~/Login/Create");
     }
 
 }
