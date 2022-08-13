@@ -10,6 +10,8 @@
         //Try Catch is implmented to catch null values // this happens when user first registers, becuase value is left empty.
         try
         {
+            //if logging in using the cookie we need this to take value from cookie instead of Database
+            admin = Request.Cookies["AdminSession"].Value.ToString();
             //Uses session to pass isadmin from database to var to pick what layout to render.
             if (admin.Equals("true"))
             {

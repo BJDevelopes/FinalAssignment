@@ -4,8 +4,13 @@
     var clayout = "";
     var admin = Session["admin"];
 
-    if (Request.Cookies["saveLogin"] != null)
+    if (Request.Cookies["AdminSession"] != null)
     {
+        //if logging in using the cookie we need this to take value from cookie instead of Database
+        if (admin == null)
+        {
+            admin = Request.Cookies["AdminSession"].Value.ToString();
+        }
         //Try Catch is implmented to catch null values // this happens when user first registers, becuase value is left empty.
         try {
             //Uses session to pass isadmin from database to var to pick what layout to render.
@@ -20,6 +25,7 @@
             Layout = clayout;
         }catch(NullReferenceException ex)
         {
+            System.Diagnostics.Debug.WriteLine(ex);
             clayout = "~/Views/Shared/_Layout2.cshtml";
             Layout = clayout;
         }
