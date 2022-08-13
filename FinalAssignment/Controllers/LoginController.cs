@@ -14,7 +14,6 @@ namespace FinalAssignment.Controllers
         [HttpGet]
         public ActionResult Create()
         {
-            
             return View();
         }
         [HttpPost]
@@ -30,61 +29,76 @@ namespace FinalAssignment.Controllers
             var inputPassword = formCollection["password"];
 
             //Querys the database and gets the password associated with the entered username.
-            string dbPassword = cmscontent.Database.SqlQuery<string>("Select password from Users where username='" + inputUsername +"'").FirstOrDefault();
+            string dbPassword = cmscontent.Database.SqlQuery<string>("Select password from Users where username='" + inputUsername + "'").FirstOrDefault();
             string dbAdmin = cmscontent.Database.SqlQuery<string>("Select isadmin from Users where username='" + inputUsername + "'").FirstOrDefault();
-
+            
             Session["admin"] = dbAdmin;
+            string adminstring = "trueAdmin";
+            string userstring = "true";
 
             //Decides what view the user will see depending if there are an admin or not.
             try
             {
-                if (Request.Cookies["saveLogin"].Value == "true")
+                //Checks checks if the cookie and the inputPassowrd stirng are empty
+                if (Request.Cookies["saveLogin"] != null && String.IsNullOrEmpty(inputPassword))
                 {
-                    return RedirectToAction("Index", "");
-                }else if(Request.Cookies["saveLogin"].Value == "trueAdmin")
-                {
-                    return RedirectToAction("Index", "");
-                }
-                if (inputPassword == dbPassword)
-                {
-                    if (dbAdmin == "true")
+                    //if the cookies value is == to userstyirng just loads the normal user view 
+                    if (Request.Cookies["saveLogin"].Value.ToString() == userstring.ToString())
                     {
-                        saveLogin.Value = "trueAdmin";
+                        Session["admin"] = "false";
+                        return RedirectToAction("Index", "");
+                    }
+                    //if the cookie is == to admin string then sets it to the admin view.
+                    else if (Request.Cookies["saveLogin"].Value.ToString() == adminstring.ToString())
+                    {
+                        Session["admin"] = "true";
+                        return RedirectToAction("Index", "");
                     }
                     else
                     {
-                        saveLogin.Value = "true";
+                        return View();
                     }
-
+                }
+                //if there is not cookie, checks the input from the user
+                else if (inputPassword == dbPassword)
+                {
+                    //sets the cookie value for the next login
+                    if (dbAdmin == "true")
+                    {
+                        saveLogin.Value = adminstring;
+                    }
+                    else
+                    {
+                        saveLogin.Value = userstring;
+                    }
                     Response.Cookies.Add(saveLogin);
-
                     return RedirectToAction("Index", "");
                 }
                 else
                 {
-                    //Do Nothing for now
                     return View();
+              
                 }
-            }catch (Exception)
+            }
+            //catches exception if there is not cookie present.
+            catch (Exception)
             {
                 if (inputPassword == dbPassword)
                 {
-
-                    saveLogin.Value = "true";
+                    saveLogin.Value = userstring;
                     Response.Cookies.Add(saveLogin);
-
                     return RedirectToAction("Index", "");
                 }
                 else
                 {
-                    //Do Nothing for now
+
                     return View();
                 }
             }
- 
         }
         public ActionResult DeleteCookie()
         {
+            //layouts call this action to delete the saveLogin cookie when a user signs out.
             Response.Cookies["saveLogin"].Expires = DateTime.Now.AddDays(-1);
             return RedirectToAction("Create", "Login");
         }
