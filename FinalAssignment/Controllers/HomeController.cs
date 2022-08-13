@@ -68,5 +68,8 @@ namespace FinalAssignment.Controllers
 
             return View("~/Views/Home/Admin/SiteConfig.cshtml");
         }
+
+  
+
     }
 }
