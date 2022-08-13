@@ -73,5 +73,10 @@ namespace FinalAssignment.Controllers
             cmscontent.SaveChanges();
             return RedirectToAction("Index");
         }
+
+        public ActionResult Cart()
+        {
+            return View("~/Cart/Index.cshtml");
+        }
     }
 }
