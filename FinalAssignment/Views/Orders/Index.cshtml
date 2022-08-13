@@ -1,52 +1,77 @@
 ﻿@model IEnumerable<FinalAssignment.Models.Orders>
-
+@using FinalAssignment.Models;
 @{
-    ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_AdminLayout.cshtml";
-}
+    @{
+        ViewBag.Title = "Index";
+        Layout = "~/Views/Shared/_AdminLayout.cshtml";
+        var clayout = "";
+        var admin = Session["admin"];
 
-<h2>Index</h2>
+        //Try Catch is implmented to catch null values // this happens when user first registers, becuase value is left empty.
+        try
+        {
+            //Uses session to pass isadmin from database to var to pick what layout to render.
+            if (admin.Equals("true"))
+            {
+                clayout = "~/Views/Shared/_AdminLayout.cshtml";
+            }
+            else
+            {
+                clayout = "~/Views/Shared/_AdminLayout.cshtml";
+                Response.Redirect("~/Home/Index");
+            }
+            Layout = clayout;
+        }
+        catch (NullReferenceException ex)
+        {
+            clayout = "~/Views/Shared/_AdminLayout.cshtml";
+            Layout = clayout;
+        }
+    }
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.userID)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.productID)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.quantity)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.total)
-        </th>
-        <th></th>
-    </tr>
+    <h2>Index</h2>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.userID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.productID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.quantity)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.total)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
-            @Html.ActionLink("Details", "Details", new { id = item.id }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.id })
-        </td>
-    </tr>
-}
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.userID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.productID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.quantity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.total)
+            </th>
+            <th></th>
+        </tr>
 
-</table>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.userID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.productID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.quantity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.total)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.id })
+                </td>
+            </tr>
+        }
+
+    </table>
