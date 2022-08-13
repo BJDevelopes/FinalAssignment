@@ -63,7 +63,7 @@ namespace FinalAssignment.Controllers
                 else if (inputPassword == dbPassword)
                 {
                     //sets the cookie value for the next login
-                    if (dbAdmin == "true")
+                    if (Session["admin"].ToString() == "true")
                     {
                         saveLogin.Value = adminstring;
                     }
