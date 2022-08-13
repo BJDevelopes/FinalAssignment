@@ -127,10 +127,12 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\OrdersController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\RegisterController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="DbContent\CMSdbcontent.cs" />
+    <Compile Include="DbContent\Models\Orders.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -140,9 +142,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\CMSdb.mdf" />
-    <Content Include="App_Data\CMSdb_log.ldf">
-      <DependentUpon>CMSdb.mdf</DependentUpon>
-    </Content>
     <Content Include="Content\aboutusbanner.png" />
     <Content Include="Content\adminpanelindex.png" />
     <Content Include="Content\bootstrap-theme.css" />
@@ -211,6 +210,11 @@
     <Content Include="Views\Register\Create.cshtml" />
     <Content Include="Views\Shared\_NoNav.cshtml" />
     <Content Include="Views\Shared\_Layout2.cshtml" />
+    <Content Include="Views\Orders\Create.cshtml" />
+    <Content Include="Views\Orders\Delete.cshtml" />
+    <Content Include="Views\Orders\Details.cshtml" />
+    <Content Include="Views\Orders\Edit.cshtml" />
+    <Content Include="Views\Orders\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
