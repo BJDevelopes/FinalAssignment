@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using FinalAssignment.DbContent;
+using FinalAssignment.Models;
 
 namespace FinalAssignment.Controllers
 {
@@ -30,7 +32,8 @@ namespace FinalAssignment.Controllers
         public ActionResult Products()
         {
             ViewBag.Message = "View all products page.";
-            return View();
+            CMSdbcontent cmscontent = new CMSdbcontent();
+            return View(cmscontent.Products.ToList());
         }
 
 
