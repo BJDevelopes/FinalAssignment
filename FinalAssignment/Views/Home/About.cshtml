@@ -11,7 +11,7 @@
         try
         {
             //Uses session to pass isadmin from database to var to pick what layout to render.
-            if (admin.Equals("admin"))
+            if (admin.Equals("true"))
             {
                 clayout = "~/Views/Shared/_Layout.cshtml";
             }
@@ -38,7 +38,7 @@
 
 <!--<h2>@ViewBag.Title.</h2> -->
 
-<img src="~/Content/aboutusbanner.png" />
+<img src="~/Content/aboutusbanner.png" class="imgcus" />
 
 
 <div class="col-md-9" style="background-color: white; border-radius: 25px; margin-left: 20px;">

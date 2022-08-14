@@ -1,83 +1,89 @@
 ﻿@model FinalAssignment.Models.Orders
 @using FinalAssignment.Models;
 @{
-    @{
-        ViewBag.Title = "Create";
-        Layout = "~/Views/Shared/_AdminLayout.cshtml";
-        var clayout = "";
-        var admin = Session["admin"];
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    var clayout = "";
+    var admin = Session["admin"];
 
-        //Try Catch is implmented to catch null values // this happens when user first registers, becuase value is left empty.
-        try
-        {
-            //if logging in using the cookie we need this to take value from cookie instead of Database
-            admin = Request.Cookies["AdminSession"].Value.ToString();
-            //Uses session to pass isadmin from database to var to pick what layout to render.
-            if (admin.Equals("true"))
-            {
-                clayout = "~/Views/Shared/_AdminLayout.cshtml";
-            }
-            else
-            {
-                clayout = "~/Views/Shared/_AdminLayout.cshtml";
-                Response.Redirect("~/Home/Index");
-            }
-            Layout = clayout;
-        }
-        catch (NullReferenceException ex)
+    //Try Catch is implmented to catch null values // this happens when user first registers, becuase value is left empty.
+    try
+    {
+        //if logging in using the cookie we need this to take value from cookie instead of Database
+        admin = Request.Cookies["AdminSession"].Value.ToString();
+        //Uses session to pass isadmin from database to var to pick what layout to render.
+        if (admin.Equals("true"))
         {
             clayout = "~/Views/Shared/_AdminLayout.cshtml";
-            Layout = clayout;
         }
+        else
+        {
+            clayout = "~/Views/Shared/_AdminLayout.cshtml";
+            Response.Redirect("~/Home/Index");
+        }
+        Layout = clayout;
     }
-
-    <h2>Create</h2>
-
-
-    @using (Html.BeginForm())
+    catch (NullReferenceException ex)
     {
-        @Html.AntiForgeryToken()
+        clayout = "~/Views/Shared/_AdminLayout.cshtml";
+        Layout = clayout;
+    }
+}
 
-        <div class="form-horizontal">
-            <h4>Orders</h4>
-            <hr />
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            <div class="form-group">
-                @Html.LabelFor(model => model.userID, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.userID, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.userID, "", new { @class = "text-danger" })
-                </div>
-            </div>
+<style>
+    /* Importing fonts from Google */
+    @@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.productID, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.productID, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.productID, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.total, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.total, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.total, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Create" class="btn btn-default" />
-                </div>
-            </div>
-        </div>
+    /* Reseting */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Poppins', sans-serif;
     }
 
-    <div>
-        @Html.ActionLink("Back to List", "Index")
+    body {
+        background: #ecf0f3;
+    }
+</style>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+<div class="wrapper">
+    <div class="logo">
+        <img src="https://i.imgur.com/8MksPRA.png" alt="">
     </div>
+    <div class="text-center mt-4 name">
+        Create Order
+    </div>
+    <form class="p-3 mt-3">
+        <div class="form-field d-flex align-items-center">
+            <span class="far fa-user"></span>
+            <!-- <input type="text" name="userName" id="userName" placeholder="Username"> -->
+            @Html.EditorFor(model => model.userID, new { htmlAttributes = new { placeholder = "User ID", @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.userID, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-field d-flex align-items-center">
+            <span class="fas fa-key"></span>
+            @Html.EditorFor(model => model.productID, new { htmlAttributes = new { placeholder = "Product ID", @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.productID, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-field d-flex align-items-center">
+            <span class="fas fa-key"></span>
+            @Html.EditorFor(model => model.total, new { htmlAttributes = new { placeholder = "Total Price", @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.total, "", new { @class = "text-danger" })
 
-    @section Scripts {
-        @Scripts.Render("~/bundles/jqueryval")
-    }
+        </div>
+        <input type="submit" value="Create" class="btn btn-default" />
+    </form>
+    <div class="text-center fs-4">
+        <a href="">@Html.ActionLink("Back to List", "Index")</a>
+    </div>
+</div>
+}
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

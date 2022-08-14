@@ -76,7 +76,15 @@ namespace FinalAssignment.Controllers
 
         public ActionResult Cart()
         {
-            return View("~/Cart/Index.cshtml");
+            return RedirectToAction("Index", "Cart");
+        }
+
+        public ActionResult AddtoCart(string name, string price)
+        {
+            Session["CartItemName"] = name;
+            Session["CartItemPrice"] = price;
+
+            return RedirectToAction("Index", "Cart");
         }
     }
 }

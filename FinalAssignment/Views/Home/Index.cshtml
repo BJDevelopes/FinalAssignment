@@ -37,31 +37,32 @@
 
 }
 
+
+
 <div class="jumbotron">
     <h1>Google Devs CMS</h1>
     <p class="lead">A powerful and feature rich content management for small business owners.</p>
     <p><a href="../home/about" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
 </div>
-
 <div class="row">
-    <div class="col-md-4" style="background-color: white; border-radius: 25px; right: 4px;">
-        <h2>Powerful Product Display System</h2>
-        <p>
-            The greatest possible customer experience is created by our content management system,
-            which provides you with a robust product display page that enables customers to effortlessly browse the whole store's inventory,
-            make purchases, and check reviews with a simple user interface..
-        </p>
-        <p><a class="btn btn-grad" href="../home/products">View Products &raquo;</a></p>
-    </div>
-    <div class="col-md-4" style="background-color: white; border-radius: 25px; right: 2px;">
-        <h2>Easy-To-Use Admin Panel</h2>
-        <p>For maximum website effectiveness, a well-designed admin panel enables the site administrator to control items, users, and all orders.</p>
-        <p><a class="btn btn-grad" href="../home/login">Visit Login Page &raquo;</a></p>
-    </div>
-    <div class="col-md-4" style="background-color: white; border-radius: 25px; ">
-        <h2>Easy User Registration</h2>
-        <p>A simple yet effective user registration page. enabling all of your customers to register in order to manage their orders and leave product reviews.</p>
-        <p><a class="btn btn-grad" href="../home/register">View Register Page &raquo;</a></p>
-    </div>
+        <div class="col-md-4" style="background-color: white; border-radius: 25px; right: 4px;">
+            <h2>Powerful Product Display System</h2>
+            <p>
+                The greatest possible customer experience is created by our content management system,
+                which provides you with a robust product display page that enables customers to effortlessly browse the whole store's inventory,
+                make purchases, and check reviews with a simple user interface..
+            </p>
+            <p><a class="btn btn-grad" href="@Url.Action("Products","Home")">View Products &raquo;</a></p>
+        </div>
+        <div class="col-md-4" style="background-color: white; border-radius: 25px; right: 2px;">
+            <h2>Easy-To-Use Admin Panel</h2>
+            <p>For maximum website effectiveness, a well-designed admin panel enables the site administrator to control items, users, and all orders.</p>
+            <p><a class="btn btn-grad" href="@Url.Action("DeleteCookie","Login")">Visit Login Page &raquo;</a></p>
+        </div>
+        <div class="col-md-4" style="background-color: white; border-radius: 25px; ">
+            <h2>Easy User Registration</h2>
+            <p>A simple yet effective user registration page. enabling all of your customers to register in order to manage their orders and leave product reviews.</p>
+            <p><a class="btn btn-grad" href="@Url.Action("Create","Register")">View Register Page &raquo;</a></p>
+        </div>
 
 </div>

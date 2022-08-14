@@ -26,15 +26,15 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Admin", "Home")</li>
-                    <li>@Html.ActionLink("Manage Orders", "Index", "Orders")</li>
-                    <li>@Html.ActionLink("Manage Products", "Index", "Products")</li>
-                    <li>@Html.ActionLink("Manage Users", "Index", "Users")</li>
-                    <li>@Html.ActionLink("Site Configuration", "SiteConfig", "Home")</li>
+                    <li>@Html.ActionLink("Home", "Admin", "Home", null, new { style = "color: white;" })</li>
+                    <li>@Html.ActionLink("Manage Orders", "Index", "Orders", null, new { style = "color: white;" })</li>
+                    <li>@Html.ActionLink("Manage Products", "Index", "Products", null, new { style = "color: white;" })</li>
+                    <li>@Html.ActionLink("Manage Users", "Index", "Users", null, new { style = "color: white;" })</li>
+                    <li>@Html.ActionLink("Site Configuration", "SiteConfig", "Home", null, new { style = "color: white;" })</li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li class="admin-butt">@Html.ActionLink("Exit", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Sign Out", "DeleteCookie", "Login")</li>
+                    <li class="admin-butt">@Html.ActionLink("Exit", "Index", "Home", null, new { style = "color: white;" })</li>
+                    <li>@Html.ActionLink("Sign Out", "DeleteCookie", "Login", null, new { style = "color: white;" })</li>
                 </ul>
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
