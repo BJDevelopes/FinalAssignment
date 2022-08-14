@@ -4,46 +4,56 @@
     Layout = "~/Views/Shared/_NoNav.cshtml";
 
 }
+<style>
+/* Importing fonts from Google */
+@@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
 
+/* Reseting */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
 
-<h2>Login</h2>
+body {
+    background: #ecf0f3;
+}
+
+</style>
 
 @using (Html.BeginForm())
 {
-    @Html.AntiForgeryToken()
+        @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.Id)
 
-    <div class="form-horizontal">
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.Id)
-
-
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.username, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.username, new { htmlAttributes = new { @class = "form-control" } })
+<div class="wrapper">
+        <div class="logo">
+            <img src="https://i.imgur.com/8MksPRA.png" alt="">
+        </div>
+        <div class="text-center mt-4 name">
+           Sign In
+        </div>
+        <form class="p-3 mt-3">
+            <div class="form-field d-flex align-items-center">
+                <span class="far fa-user"></span>
+               <!-- <input type="text" name="userName" id="userName" placeholder="Username"> -->
+                @Html.EditorFor(model => model.username, new { htmlAttributes = new { placeholder = "Username", @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.username, "", new { @style = "color: red", @class = "text-danger" })
             </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.password, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.password, new { htmlAttributes = new { @class = "form-control" } })
+            <div class="form-field d-flex align-items-center">
+                <span class="fas fa-key"></span>
+                @Html.EditorFor(model => model.password, new { htmlAttributes = new { placeholder = "Password", @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.password, "", new { @style = "color: red", @class = "text-danger" })
             </div>
+            <button class="btn mt-3" value="Log In">Login</button>
+        </form>
+        <div class="text-center fs-4">
+            <a href="">Forgot Password?</a>
+            or
+            <a href="">@Html.ActionLink("Register", "Create", "Register")</a>
         </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Log In" class="btn btn-default" />
             </div>
-        </div>
-
-        <div>
-            @Html.ActionLink("Register", "Create", "Register")
-        </div>
-    </div>
 }
 
