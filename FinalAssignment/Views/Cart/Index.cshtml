@@ -6,6 +6,8 @@
     //Try Catch is implmented to catch null values // this happens when user first registers, becuase value is left empty.
     try
     {
+        //if logging in using the cookie we need this to take value from cookie instead of Database
+        admin = Request.Cookies["AdminSession"].Value.ToString();
         //Uses session to pass isadmin from database to var to pick what layout to render.
         if (admin.Equals("true"))
         {
@@ -25,271 +27,359 @@
 
 }
 
-
-<html>
 <head>
-    <title>Shopping Cart</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <style>
-        .shopping-cart{
-	padding-bottom: 50px;
-	font-family: 'Montserrat', sans-serif;
-}
+        html {
+            background: #bbc3c6;
+            font: 62.5%/1.5em "Trebuchet Ms", helvetica;
+        }
 
-.shopping-cart.dark{
-	background-color: #f6f6f6;
-}
+        * {
+            box-sizing: border-box;
+            -webkit-font-smoothing: antialiased;
+            font-smoothing: antialiased;
+        }
 
-.shopping-cart .content{
-	box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.075);
-	background-color: white;
-}
+        @@font-face {
+            font-family: 'Shopper';
+            src: url('http://www.shopperfont.com/font/Shopper-Std.ttf');
+        }
 
-.shopping-cart .block-heading{
-    padding-top: 50px;
-    margin-bottom: 40px;
-    text-align: center;
-}
+        .shopper {
+            text-transform: lowercase;
+            font: 2em 'Shopper', sans-serif;
+            line-height: 0.5em;
+            display: inline-block;
+        }
 
-.shopping-cart .block-heading p{
-	text-align: center;
-	max-width: 420px;
-	margin: auto;
-	opacity:0.7;
-}
 
-.shopping-cart .dark .block-heading p{
-	opacity:0.8;
-}
 
-.shopping-cart .block-heading h1,
-.shopping-cart .block-heading h2,
-.shopping-cart .block-heading h3 {
-	margin-bottom:1.2rem;
-	color: #3b99e0;
-}
+        h1 {
+            text-transform: uppercase;
+            font-weight: bold;
+            font-size: 2.5em;
+        }
 
-.shopping-cart .items{
-	margin: auto;
-}
+        p {
+            font-size: 1.5em;
+            color: #8a8a8a;
+        }
 
-.shopping-cart .items .product{
-	margin-bottom: 20px;
-	padding-top: 20px;
-	padding-bottom: 20px;
-}
+        input {
+            border: 0.3em solid #bbc3c6;
+            padding: 0.5em 0.3em;
+            font-size: 1.4em;
+            color: #8a8a8a;
+            text-align: center;
+        }
 
-.shopping-cart .items .product .info{
-	padding-top: 0px;
-	text-align: center;
-}
+        img {
+            max-width: 9em;
+            width: 100%;
+            overflow: hidden;
+            margin-right: 1em;
+        }
 
-.shopping-cart .items .product .info .product-name{
-	font-weight: 600;
-}
+        a {
+            text-decoration: none;
+        }
 
-.shopping-cart .items .product .info .product-name .product-info{
-	font-size: 14px;
-	margin-top: 15px;
-}
+        .container {
+            max-width: 75em;
+            width: 95%;
+            margin: 40px auto;
+            overflow: hidden;
+            position: relative;
+            border-radius: 18px;
+            background: #ecf0f1;
+        }
 
-.shopping-cart .items .product .info .product-name .product-info .value{
-	font-weight: 400;
-}
+        .heading {
+            padding: 1em;
+            position: relative;
+            z-index: 1;
+            color: #f7f7f7;
+            background: black;
+        }
 
-.shopping-cart .items .product .info .quantity .quantity-input{
-    margin: auto;
-    width: 80px;
-}
+        .cart {
+            margin: 2.5em;
+            overflow: hidden;
+        }
 
-.shopping-cart .items .product .info .price{
-	margin-top: 15px;
-    font-weight: bold;
-    font-size: 22px;
- }
+            .cart.is-closed {
+                height: 0;
+                margin-top: -2.5em;
+            }
 
-.shopping-cart .summary{
-	border-top: 2px solid #5ea4f3;
-    background-color: #f7fbff;
-    height: 100%;
-    padding: 30px;
-}
+        .table {
+            background: #ffffff;
+            border-radius: 0.6em;
+            overflow: hidden;
+            clear: both;
+            margin-bottom: 1.8em;
+        }
 
-.shopping-cart .summary h3{
-	text-align: center;
-	font-size: 1.3em;
-	font-weight: 600;
-	padding-top: 20px;
-	padding-bottom: 20px;
-}
 
-.shopping-cart .summary .summary-item:not(:last-of-type){
-	padding-bottom: 10px;
-	padding-top: 10px;
-	border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-}
+        .layout-inline > * {
+            display: inline-block;
+        }
 
-.shopping-cart .summary .text{
-	font-size: 1em;
-	font-weight: 600;
-}
+        .align-center {
+            text-align: center;
+        }
 
-.shopping-cart .summary .price{
-	font-size: 1em;
-	float: right;
-}
+        .th {
+            background: black;
+            color: #fff;
+            text-transform: uppercase;
+            font-weight: bold;
+            font-size: 1.5em;
+        }
 
-.shopping-cart .summary button{
-	margin-top: 20px;
-}
+        .tf {
+            background: black;
+            text-transform: uppercase;
+            text-align: right;
+            font-size: 1.2em;
+        }
 
-@@media (min-width: 768px) {
-	.shopping-cart .items .product .info {
-		padding-top: 25px;
-		text-align: left;
-	}
+            .tf p {
+                color: #fff;
+                font-weight: bold;
+            }
 
-	.shopping-cart .items .product .info .price {
-		font-weight: bold;
-		font-size: 22px;
-		top: 17px;
-	}
+        .col {
+            padding: 1em;
+            width: 12%;
+            color: white;
+        }
 
-	.shopping-cart .items .product .info .quantity {
-		text-align: center;
-	}
-	.shopping-cart .items .product .info .quantity .quantity-input {
-		padding: 4px 10px;
-		text-align: center;
-	}
-}
+        .col-pro {
+            width: 44%;
+        }
+
+        .col-green {
+            padding: 1em;
+            width: 12%;
+            color: green;
+        }
+
+        .col-red {
+            padding: 1em;
+            width: 12%;
+            color: red;
+        }
+
+        .col-pro > * {
+            vertical-align: middle;
+        }
+
+        .col-qty {
+            text-align: center;
+            width: 17%;
+        }
+
+        .col-numeric p {
+            font: bold 1.8em helvetica;
+        }
+
+        .col-total p {
+            color: #12c8b1;
+        }
+
+        .tf .col {
+            width: 20%;
+        }
+
+        .row > div {
+            vertical-align: middle;
+        }
+
+        .row-bg2 {
+            background: #f7f7f7;
+        }
+
+        .visibility-cart {
+            position: absolute;
+            color: #fff;
+            top: 0.5em;
+            right: 0.5em;
+            font: bold 2em arial;
+            border: 0.16em solid #fff;
+            border-radius: 2.5em;
+            padding: 0 0.22em 0 0.25em;
+        }
+
+        .col-qty > * {
+            vertical-align: middle;
+        }
+
+        .col-qty > input {
+            max-width: 2.6em;
+        }
+
+
+        a.qty {
+            width: 1em;
+            line-height: 1em;
+            border-radius: 2em;
+            font-size: 2.5em;
+            font-weight: bold;
+            text-align: center;
+            background: #43ace3;
+            color: #fff;
+        }
+
+            a.qty:hover {
+                background: #3b9ac6;
+            }
+
+        .btn {
+            padding: 10px 30px;
+            border-radius: 0.3em;
+            font-size: 1.4em;
+            font-weight: bold;
+            background: #43ace3;
+            color: #fff;
+            box-shadow: 0 3px 0 rgba(59,154,198, 1)
+        }
+
+            .btn:hover {
+                box-shadow: 0 3px 0 rgba(59,154,198, 0)
+            }
+
+
+        .btn-update {
+            float: left;
+            margin: 0 0 1.5em 0;
+        }
+
+        .btn-sub {
+            float: right;
+            background-color: green;
+            margin: 0 0 1.5em 0;
+        }
+
+        .transition {
+            transition: all 0.3s ease-in-out;
+        }
+
+        @@media screen and ( max-width: 755px) {
+            .container {
+                width: 98%;
+            }
+
+            .col-pro {
+                width: 35%;
+            }
+
+            .col-qty {
+                width: 22%;
+            }
+
+            img {
+                max-width: 100%;
+                margin-bottom: 1em;
+            }
+        }
+
+        @@media screen and ( max-width: 591px) {
+        }
     </style>
+    <script>
+        document.querySelector('.someclass').innerHTML = 'welcome world';
+    </script>
+
+
 </head>
-<body>
-    <main class="page">
-        <section class="shopping-cart dark">
-            <div class="container">
-                <div class="block-heading">
-                    <h2>Shopping Cart</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam urna, dignissim nec auctor in, mattis vitae leo.</p>
+
+@{
+    if (@Session["CartItemPrice"] != null)
+    {
+        var amount = float.Parse(@Session["CartItemPrice"].ToString(), System.Globalization.CultureInfo.InvariantCulture);
+        var tax = 0.13;
+        var total = Math.Round((amount * 0.13) + amount, 2);
+        var taxamount = Math.Round(amount * 0.13, 2);
+        Session["Tax"] = taxamount.ToString();
+        Session["Total"] = total.ToString();
+    }
+    else
+    {
+        Session["CartItemName"] = "Empty";
+        Session["CartItemPrice"] = "0.00";
+        Session["Tax"] = "0.00";
+        Session["Total"] = "0.00";
+    }
+}
+
+<div class="container">
+    <div class="heading">
+        <h1>
+            <span class="shopper">BETA</span> Shopping Cart
+        </h1>
+
+    </div>
+
+    <div class="cart transition is-open">
+
+
+
+        <div class="table">
+
+            <div class="layout-inline row th">
+                <div class="col col-pro">Product</div>
+                <div class="col col-price align-center ">
+                    Price
                 </div>
-                <div class="content">
-                    <div class="row">
-                        <div class="col-md-12 col-lg-8">
-                            <div class="items">
-                                <div class="product">
-                                    <div class="row">
-                                        <div class="col-md-3">
-                                            <img class="img-fluid mx-auto d-block image" src="assets/img/image.jpg">
-                                        </div>
-                                        <div class="col-md-8">
-                                            <div class="info">
-                                                <div class="row">
-                                                    <div class="col-md-5 product-name">
-                                                        <div class="product-name">
-                                                            <a href="#">Lorem Ipsum dolor</a>
-                                                            <div class="product-info">
-                                                                <div>Display: <span class="value">5 inch</span></div>
-                                                                <div>RAM: <span class="value">4GB</span></div>
-                                                                <div>Memory: <span class="value">32GB</span></div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-4 quantity">
-                                                        <label for="quantity">Quantity:</label>
-                                                        <input id="quantity" type="number" value="1" class="form-control quantity-input">
-                                                    </div>
-                                                    <div class="col-md-3 price">
-                                                        <span>$120</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="product">
-                                    <div class="row">
-                                        <div class="col-md-3">
-                                            <img class="img-fluid mx-auto d-block image" src="assets/img/image.jpg">
-                                        </div>
-                                        <div class="col-md-8">
-                                            <div class="info">
-                                                <div class="row">
-                                                    <div class="col-md-5 product-name">
-                                                        <div class="product-name">
-                                                            <a href="#">Lorem Ipsum dolor</a>
-                                                            <div class="product-info">
-                                                                <div>Display: <span class="value">5 inch</span></div>
-                                                                <div>RAM: <span class="value">4GB</span></div>
-                                                                <div>Memory: <span class="value">32GB</span></div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-4 quantity">
-                                                        <label for="quantity">Quantity:</label>
-                                                        <input id="quantity" type="number" value="1" class="form-control quantity-input">
-                                                    </div>
-                                                    <div class="col-md-3 price">
-                                                        <span>$120</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="product">
-                                    <div class="row">
-                                        <div class="col-md-3">
-                                            <img class="img-fluid mx-auto d-block image" src="assets/img/image.jpg">
-                                        </div>
-                                        <div class="col-md-8">
-                                            <div class="info">
-                                                <div class="row">
-                                                    <div class="col-md-5 product-name">
-                                                        <div class="product-name">
-                                                            <a href="#">Lorem Ipsum dolor</a>
-                                                            <div class="product-info">
-                                                                <div>Display: <span class="value">5 inch</span></div>
-                                                                <div>RAM: <span class="value">4GB</span></div>
-                                                                <div>Memory: <span class="value">32GB</span></div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-4 quantity">
-                                                        <label for="quantity">Quantity:</label>
-                                                        <input id="quantity" type="number" value="1" class="form-control quantity-input">
-                                                    </div>
-                                                    <div class="col-md-3 price">
-                                                        <span>$120</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-12 col-lg-4">
-                            <div class="summary">
-                                <h3>Summary</h3>
-                                <div class="summary-item"><span class="text">Subtotal</span><span class="price">$360</span></div>
-                                <div class="summary-item"><span class="text">Discount</span><span class="price">$0</span></div>
-                                <div class="summary-item"><span class="text">Shipping</span><span class="price">$0</span></div>
-                                <div class="summary-item"><span class="text">Total</span><span class="price">$360</span></div>
-                                <button type="button" class="btn btn-primary btn-lg btn-block">Checkout</button>
-                            </div>
-                        </div>
-                    </div>
+                <div class="col col-qty align-center">QTY</div>
+                <div class="col">TAX</div>
+                <div class="col">Total</div>
+            </div>
+
+            <div class="layout-inline row">
+
+                <div class="col col-pro layout-inline">
+                    <!--<img src="http://static.ddmcdn.com/gif/10-kitten-cuteness-1.jpg" alt="kitten" />-->
+                    <p> @Session["CartItemName"].ToString()</p>
+                </div>
+
+                <div class="col col-price col-numeric align-center ">
+                    <p>$@Session["CartItemPrice"].ToString()</p>
+                </div>
+
+                <div class="col col-qty layout-inline">
+                    <p>1</p>
+                </div>
+
+                <div class="col col-vat col-numeric">
+                    <p>@Session["Tax"].ToString()</p>
+                </div>
+                <div class="col col-total col-numeric">
+                    <p>$@Session["Total"].ToString()</p>
                 </div>
             </div>
-        </section>
-    </main>
-</body>
-<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-</body>
-</html>
 
+
+
+            <div class="tf">
+                <div class="row layout-inline">
+                    <div class="col">
+                        <p>Tax</p>
+                    </div>
+                    <div class="col-red">$@Session["Tax"].ToString()</div>
+                </div>
+                <div class="row layout-inline">
+                    <div class="col">
+                        <p>Total</p>
+                    </div>
+                    <div class="col-green">$@Session["Total"].ToString()</div>
+                </div>
+            </div>
+        </div>
+
+        <a href="#" class="btn btn-sub">Submit Order</a>
+        <a href="#" class="btn btn-update">Update Cart</a>
+    </div>
 
