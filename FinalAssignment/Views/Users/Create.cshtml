@@ -67,12 +67,6 @@
             <div class="form-field d-flex align-items-center">
                 <span class="far fa-user"></span>
                 <!-- <input type="text" name="userName" id="userName" placeholder="Username"> -->
-                @Html.EditorFor(model => model.Id, new { htmlAttributes = new { placeholder = "Id", @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Id, "", new { @class = "text-danger" })
-            </div>
-            <div class="form-field d-flex align-items-center">
-                <span class="far fa-user"></span>
-                <!-- <input type="text" name="userName" id="userName" placeholder="Username"> -->
                 @Html.EditorFor(model => model.isadmin, new { htmlAttributes = new { placeholder = "isAdmin", @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.isadmin, "", new { @class = "text-danger" })
             </div>
