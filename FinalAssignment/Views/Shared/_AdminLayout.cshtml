@@ -28,13 +28,13 @@
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Admin", "Home")</li>
                     <li>@Html.ActionLink("Manage Orders", "Index", "Orders")</li>
-                    <!--<li>@Html.ActionLink("Create Products", "NProducts", "Home")</li> - Reference this page within the Manage Products Page with a button-->
                     <li>@Html.ActionLink("Manage Products", "Index", "Products")</li>
                     <li>@Html.ActionLink("Manage Users", "Index", "Users")</li>
                     <li>@Html.ActionLink("Site Configuration", "SiteConfig", "Home")</li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li class="admin-butt">@Html.ActionLink("Exit", "Index", "Home")</li>
+                    <li>@Html.ActionLink("Sign Out", "DeleteCookie", "Login")</li>
                 </ul>
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->

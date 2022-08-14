@@ -1,26 +1,37 @@
-﻿@{
+﻿@model IEnumerable<FinalAssignment.Models.Products>
+
+@{
     ViewBag.Title = "Products";
     var clayout = "";
     var admin = Session["admin"];
 
-    //Try Catch is implmented to catch null values // this happens when user first registers, becuase value is left empty.
-    try
+    if (Request.Cookies["AdminSession"] != null)
     {
-        //Uses session to pass isadmin from database to var to pick what layout to render.
-        if (admin.Equals("true"))
+        //if logging in using the cookie we need this to take value from cookie instead of Database
+        admin = Request.Cookies["AdminSession"].Value.ToString();
+        //Try Catch is implmented to catch null values // this happens when user first registers, becuase value is left empty.
+        try
         {
-            clayout = "~/Views/Shared/_Layout.cshtml";
+            //Uses session to pass isadmin from database to var to pick what layout to render.
+            if (admin.Equals("true"))
+            {
+                clayout = "~/Views/Shared/_Layout.cshtml";
+            }
+            else
+            {
+                clayout = "~/Views/Shared/_Layout2.cshtml";
+            }
+            Layout = clayout;
         }
-        else
+        catch (NullReferenceException ex)
         {
             clayout = "~/Views/Shared/_Layout2.cshtml";
+            Layout = clayout;
         }
-        Layout = clayout;
     }
-    catch (NullReferenceException ex)
+    else
     {
-        clayout = "~/Views/Shared/_Layout2.cshtml";
-        Layout = clayout;
+        Response.Redirect("~/Login/Create");
     }
 }
 
@@ -29,9 +40,22 @@
 
 <!--<h2>@ViewBag.Title.</h2> -->
 
-<img src="~/Content/productsbanner.png"/>
-<div class="col-md-9" style="background-color: white; border-radius: 25px; margin-left: 20px; padding-top:10px;">
-    
-    <!-- Do Product Display here-->
+<img src="~/Content/productsbanner.png" />
+<div class="col-md-9" style="border-radius: 25px; margin-left: 20px; padding-top:10px;">
+
+    <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:2%">
+        @foreach (var item in Model)
+        {
+            <div style="aspect-ratio:1/1; display:flex; align-items:center; padding:5%; background-color:coral; color: aliceblue; border-radius:18px">
+                <div>
+                    <p style="font-family: 'sans-serif'; font-size:18px">Name: @Html.DisplayFor(modelItem => item.name)</p>
+                    <br />
+                    <p style="font-family: 'sans-serif'; font-size:14px">Price: $@Html.DisplayFor(modelItem => item.price)</p>
+                </div>
+
+
+            </div>
+        }
+    </div>
 
 </div>

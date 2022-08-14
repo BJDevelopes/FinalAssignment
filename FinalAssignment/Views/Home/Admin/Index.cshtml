@@ -1,11 +1,56 @@
-﻿@{
+﻿@using FinalAssignment.Models;
+@{
     ViewBag.Title = "Admin Home Page";
-    Layout = "../../Shared/_AdminLayout.cshtml";
+    var clayout = "";
+    var admin = Session["admin"];
+
+    //Try Catch is implmented to catch null values // this happens when user first registers, becuase value is left empty.
+    try
+    {
+        //if logging in using the cookie we need this to take value from cookie instead of Database
+        admin = Request.Cookies["AdminSession"].Value.ToString();
+        //Uses session to pass isadmin from database to var to pick what layout to render.
+        if (admin.Equals("true"))
+        {
+            clayout = "~/Views/Shared/_AdminLayout.cshtml";
+        }
+        else
+        {
+            clayout = "~/Views/Shared/_AdminLayout.cshtml";
+            Response.Redirect("~/Home/Index");
+        }
+        Layout = clayout;
+    }
+    catch (NullReferenceException ex)
+    {
+        clayout = "~/Views/Shared/_AdminLayout.cshtml";
+        Layout = clayout;
+    }
 }
 
 
 <!--<h2>@ViewBag.Title.</h2> -->
 
-<img src="~/Content/adminpanelindex.png" /> 
+<img src="~/Content/adminpanelindex.png" />
+<div class="col-md-9" style="background-color: white; border-radius: 25px; margin-left: 20px;">
+    <table class="table" style="width:100%; border-radius: 25px;">
+        <br />
+        <tr>
+            <th>User Controls</th>
+            <td><button type="button" class="btn btn-primary">@Html.ActionLink("Manage Users", "Index", "Users", new {style = "color: white;"})</button></td>
+            <td><button type="button" class="btn btn-success">@Html.ActionLink("Create User", "Create", "Users", new { style = "color: white;" })</button></td>
+        </tr>
+        <tr>
+            <th>Order Controls</th>
+            <td><button type="button" class="btn btn-primary">@Html.ActionLink("Manage Orders", "Index", "Orders", new { style = "color: white;" })</button></td>
+            <td><button type="button" class="btn btn-success">@Html.ActionLink("Create Order", "Create", "Orders", new { style = "color: white;" })</button></td>
+        </tr>
+        <tr>
+            <th>Product Controls</th>
+            <td><button type="button" class="btn btn-primary">@Html.ActionLink("Manage Products", "Index", "Products", new { style = "color: white;" })</button></td>
+            <td><button type="button" class="btn btn-success">@Html.ActionLink("Create Product", "Create", "Products", new { style = "color: white;" })</button></td>
+        </tr>
+    </table>
+</div>
 
-<!-- Admin Index Page - Menu to access website admin tools -->
+    <!-- Admin Index Page - Menu to access website admin tools -->

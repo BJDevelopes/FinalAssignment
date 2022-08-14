@@ -14,5 +14,9 @@ namespace FinalAssignment.Models
         public string description { get; set; }
         public string quantity { get; set; }
         public string price { get; set; }
+        public string instock { get; set; }
+        public string pictureURL { get; set; }
+
+
     }
 }
