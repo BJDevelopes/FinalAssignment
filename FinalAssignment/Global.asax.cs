@@ -19,7 +19,7 @@ namespace FinalAssignment
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-           // Database.SetInitializer<CMSdbcontent>(new DropCreateDatabaseIfModelChanges<CMSdbcontent>());
+            //Database.SetInitializer<CMSdbcontent>(new DropCreateDatabaseIfModelChanges<CMSdbcontent>());
         }
     }
 }

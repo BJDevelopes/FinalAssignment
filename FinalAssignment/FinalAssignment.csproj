@@ -142,7 +142,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\CMSdb.mdf" />
+    <Content Include="App_Data\FinalAssignment.DbContent.CMSdbcontent.mdf" />
     <Content Include="Content\aboutusbanner.png" />
     <Content Include="Content\adminpanelindex.png" />
     <Content Include="Content\bootstrap-theme.css" />
