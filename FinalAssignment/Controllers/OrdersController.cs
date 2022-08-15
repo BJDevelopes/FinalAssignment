@@ -118,23 +118,12 @@ namespace FinalAssignment.Controllers
 
         public ActionResult CreateOrder()
         {
-                //SQL Table
-                //id
-                //userid
-                //productid
-                //quantity
-                //total
-
             if(Session["CartItemName"] != null || Session["CartItemName"] != null || Session["Total"] != null)
             {
                 //creates an object of our database context class
                 CMSdbcontent cmscontent = new CMSdbcontent();
                 if ((Session["CartItemName"].ToString() != "Empty") && (Session["CartItemPrice"].ToString() != "0.00") && ( Session["Total"].ToString() != "0.00"))
                 {
-                    System.Diagnostics.Debug.WriteLine("Item Name Found | Value - " + Session["CartItemName"].ToString());
-                    System.Diagnostics.Debug.WriteLine("Item Price Found | Value - " + Session["CartItemPrice"].ToString());
-                    System.Diagnostics.Debug.WriteLine("Item Total Found | Value - " + Session["Total"].ToString());
-                    System.Diagnostics.Debug.WriteLine("User Found | Value - " + Request.Cookies["User"].Value.ToString());
                     var name = Session["CartItemName"].ToString();
                     var price = Session["CartItemPrice"].ToString();
                     var total = Session["Total"].ToString();
@@ -161,10 +150,6 @@ namespace FinalAssignment.Controllers
                 }
                 else if ((Session["CartItemName"].ToString() != "Empty") && (Session["CartItemPrice"].ToString() != "0.00") && (Session["Total"].ToString() != "0"))
                 {
-                    System.Diagnostics.Debug.WriteLine("Item Name Found | Value - " + Session["CartItemName"].ToString());
-                    System.Diagnostics.Debug.WriteLine("Item Price Found | Value - " + Session["CartItemPrice"].ToString());
-                    System.Diagnostics.Debug.WriteLine("Item Total Found | Value - " + Session["Total"].ToString());
-                    System.Diagnostics.Debug.WriteLine("User Found | Value - " + Request.Cookies["User"].Value.ToString());
                     var name = Session["CartItemName"].ToString();
                     var price = Session["CartItemPrice"].ToString();
                     var total = Session["Total"].ToString();
