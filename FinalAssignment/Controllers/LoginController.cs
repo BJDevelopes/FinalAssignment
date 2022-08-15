@@ -31,7 +31,9 @@ namespace FinalAssignment.Controllers
             //creates an object of our database context class
             CMSdbcontent cmscontent = new CMSdbcontent();
             HttpCookie saveLogin = new HttpCookie("AdminSession");
+            HttpCookie saveUser = new HttpCookie("User");
             saveLogin.Expires = DateTime.Now.AddYears(1);
+            saveUser.Expires = DateTime.Now.AddYears(1);
 
             //gets values from the from entered by the user, using form collection
             string inputUsername = formCollection["username"];
@@ -74,12 +76,15 @@ namespace FinalAssignment.Controllers
                     //sets the cookie value for the next login
                     if (Session["admin"].ToString() == adminstring)
                     {
+                        saveUser.Value = inputUsername;
                         saveLogin.Value = adminstring;
                     }
                     else
                     {
+                        saveUser.Value = inputUsername;
                         saveLogin.Value = userstring;
                     }
+                    Response.Cookies.Add(saveUser);
                     Response.Cookies.Add(saveLogin);
                     return RedirectToAction("Index", "");
                 }
@@ -109,6 +114,7 @@ namespace FinalAssignment.Controllers
         {
             //layouts call this action to delete the saveLogin cookie when a user signs out.
             Response.Cookies["AdminSession"].Expires = DateTime.Now.AddDays(-1);
+            Response.Cookies["User"].Expires = DateTime.Now.AddDays(-1);
             return RedirectToAction("Create", "Login");
         }
 

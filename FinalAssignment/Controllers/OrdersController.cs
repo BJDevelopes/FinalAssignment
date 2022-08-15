@@ -116,6 +116,75 @@ namespace FinalAssignment.Controllers
             return RedirectToAction("Index");
         }
 
+        public ActionResult CreateOrder()
+        {
+                //SQL Table
+                //id
+                //userid
+                //productid
+                //quantity
+                //total
+
+            if(Session["CartItemName"] != null || Session["CartItemName"] != null || Session["Total"] != null)
+            {
+                //creates an object of our database context class
+                CMSdbcontent cmscontent = new CMSdbcontent();
+                if ((Session["CartItemName"].ToString() != "Empty") && (Session["CartItemPrice"].ToString() != "0.00") && ( Session["Total"].ToString() != "0.00"))
+                {
+                    System.Diagnostics.Debug.WriteLine("Item Name Found | Value - " + Session["CartItemName"].ToString());
+                    System.Diagnostics.Debug.WriteLine("Item Price Found | Value - " + Session["CartItemPrice"].ToString());
+                    System.Diagnostics.Debug.WriteLine("Item Total Found | Value - " + Session["Total"].ToString());
+                    System.Diagnostics.Debug.WriteLine("User Found | Value - " + Request.Cookies["User"].Value.ToString());
+                    var name = Session["CartItemName"].ToString();
+                    var price = Session["CartItemPrice"].ToString();
+                    var total = Session["Total"].ToString();
+                    var user = Request.Cookies["user"].Value.ToString();
+                    var quantity = "1";  // for now users can only buy 1 at a time;
+                    //Querys the database and gets the password associated with the entered username.
+                    int userid = cmscontent.Database.SqlQuery<int>("Select id from Users where username='" + user + "'").FirstOrDefault();
+                    int productid = cmscontent.Database.SqlQuery<int>("Select id from Products where name='" + name + "'").FirstOrDefault();
+                    int id = cmscontent.Database.SqlQuery<int>("Select Max(id) +1 from Orders").FirstOrDefault();
+                    System.Diagnostics.Debug.WriteLine("User ID Found | Value - " + userid.ToString());
+                    System.Diagnostics.Debug.WriteLine("Product ID Found | Value - " + productid.ToString());
+
+                    cmscontent.Orders.Add(new Orders
+                        {
+                            id = id,
+                            userID = userid,
+                            productID = productid,
+                            quantity = quantity,
+                            total = total
+                        });
+                    cmscontent.SaveChanges();
+
+                    TempData["Success"] = "Order Successfully Submitted!";
+                }
+                else if ((Session["CartItemName"].ToString() != "Empty") && (Session["CartItemPrice"].ToString() != "0.00") && (Session["Total"].ToString() != "0"))
+                {
+                    System.Diagnostics.Debug.WriteLine("Item Name Found | Value - " + Session["CartItemName"].ToString());
+                    System.Diagnostics.Debug.WriteLine("Item Price Found | Value - " + Session["CartItemPrice"].ToString());
+                    System.Diagnostics.Debug.WriteLine("Item Total Found | Value - " + Session["Total"].ToString());
+                    System.Diagnostics.Debug.WriteLine("User Found | Value - " + Request.Cookies["User"].Value.ToString());
+                    var name = Session["CartItemName"].ToString();
+                    var price = Session["CartItemPrice"].ToString();
+                    var total = Session["Total"].ToString();
+                    var user = Request.Cookies["user"].Value.ToString();
+                    var quantity = "1";  // for now users can only buy 1 at a time;
+
+
+                    TempData["Success"] = "Order Successfully Submitted!";
+                }
+                else
+                {
+                    System.Diagnostics.Debug.WriteLine("Item Data Not Found");
+                    TempData["Empty"] = "Your Cart is Empty, please add something before submitting.";
+                    //return RedirectToAction("Index", "Cart");
+                }
+            }
+
+            return RedirectToAction("Index", "Cart");
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

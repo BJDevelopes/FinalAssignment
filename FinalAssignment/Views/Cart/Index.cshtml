@@ -253,6 +253,7 @@
 
         .btn-update {
             float: left;
+            background-color: red;
             margin: 0 0 1.5em 0;
         }
 
@@ -311,8 +312,24 @@
         Session["CartItemPrice"] = "0.00";
         Session["Tax"] = "0.00";
         Session["Total"] = "0.00";
+
     }
 }
+
+@if (TempData["Empty"] != null)
+{
+    <div class="alert-danger">
+        @TempData["Empty"]
+    </div>
+}
+
+@if (TempData["Success"] != null)
+{
+    <div class="alert-success">
+        @TempData["Success"]
+    </div>
+}
+
 
 <div class="container">
     <div class="heading">
@@ -379,7 +396,7 @@
             </div>
         </div>
 
-        <a href="#" class="btn btn-sub">Submit Order</a>
-        <a href="#" class="btn btn-update">Update Cart</a>
+        <a href="@Url.Action("CreateOrder", "Orders")" class="btn btn-sub">Submit Order</a>
+        <a href="@Url.Action("ClearCart","Products")" class="btn btn-update">Clear Cart</a>
     </div>
 

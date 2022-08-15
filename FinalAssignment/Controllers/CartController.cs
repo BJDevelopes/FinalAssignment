@@ -11,22 +11,6 @@ namespace FinalAssignment.Controllers
         // GET: Cart
         public ActionResult Index()
         {
-            if (Session["CartItemName"] != null)
-            {
-                System.Diagnostics.Debug.WriteLine("Item Name Found | Value - " + Session["CartItemName"].ToString());
-            }
-            else
-            {
-                System.Diagnostics.Debug.WriteLine("Item Name Not Found");
-            }
-            if (Session["CartItemPrice"] != null)
-            {
-                System.Diagnostics.Debug.WriteLine("Item Price Found | Value - " + Session["CartItemPrice"].ToString());
-            }
-            else
-            {
-                System.Diagnostics.Debug.WriteLine("Item Price Not Found");
-            }
 
             return View();
         }

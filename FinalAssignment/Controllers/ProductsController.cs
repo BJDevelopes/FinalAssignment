@@ -86,5 +86,14 @@ namespace FinalAssignment.Controllers
 
             return RedirectToAction("Index", "Cart");
         }
+
+        public ActionResult ClearCart()
+        {
+
+            Session["CartItemName"] = null;
+            Session["CartItemPrice"] = null;
+
+            return RedirectToAction("Index", "Cart");
+        }
     }
 }

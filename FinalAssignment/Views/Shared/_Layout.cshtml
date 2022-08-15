@@ -21,7 +21,6 @@
                     </button>
                     @Html.ActionLink("Google Devs CMS", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
                 </div>
-
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
@@ -39,7 +38,7 @@
                             </a>
                         </li>
                         <li class="admin-butt">@Html.ActionLink("Admin", "Admin", "Home", null, new { style = "color: white;" })</li>
-                        <li>@Html.ActionLink("Sign Out", "DeleteCookie", "Login",null, new { style = "color: white;" })</li>
+                        <li>@Html.ActionLink("Sign Out", "DeleteCookie", "Login", null, new { style = "color: white;" })</li>
                     </ul>
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->
@@ -51,8 +50,8 @@
             </footer>
         </div>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
-</body>
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        @RenderSection("scripts", required: false)
+    </body>
 </html>
