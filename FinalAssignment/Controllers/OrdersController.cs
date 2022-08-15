@@ -155,7 +155,22 @@ namespace FinalAssignment.Controllers
                     var total = Session["Total"].ToString();
                     var user = Request.Cookies["user"].Value.ToString();
                     var quantity = "1";  // for now users can only buy 1 at a time;
+                    //Querys the database and gets the password associated with the entered username.
+                    int userid = cmscontent.Database.SqlQuery<int>("Select id from Users where username='" + user + "'").FirstOrDefault();
+                    int productid = cmscontent.Database.SqlQuery<int>("Select id from Products where name='" + name + "'").FirstOrDefault();
+                    int id = cmscontent.Database.SqlQuery<int>("Select Max(id) +1 from Orders").FirstOrDefault();
+                    System.Diagnostics.Debug.WriteLine("User ID Found | Value - " + userid.ToString());
+                    System.Diagnostics.Debug.WriteLine("Product ID Found | Value - " + productid.ToString());
 
+                    cmscontent.Orders.Add(new Orders
+                    {
+                        id = id,
+                        userID = userid,
+                        productID = productid,
+                        quantity = quantity,
+                        total = total
+                    });
+                    cmscontent.SaveChanges();
 
                     TempData["Success"] = "Order Successfully Submitted!";
                 }
